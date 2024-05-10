@@ -1,4 +1,4 @@
 *.env
 **/*.env
-dumps/
-node_modules
+
+node_modules/

@@ -977,12 +977,12 @@
           "name": "title",
           "columnName": "title",
           "type": "text",
-          "isRequired": false,
+          "isRequired": true,
           "kind": "scalar",
           "isList": false,
           "isGenerated": false,
           "sequence": false,
-          "hasDefaultValue": true,
+          "hasDefaultValue": false,
           "isId": false,
           "maxLength": null
         },
@@ -3988,6 +3988,24 @@
           "maxLength": null
         },
         {
+          "name": "users",
+          "type": "users",
+          "isRequired": true,
+          "kind": "object",
+          "relationName": "share_recordsTousers",
+          "relationFromFields": [
+            "viewer"
+          ],
+          "relationToFields": [
+            "id"
+          ],
+          "isList": false,
+          "isId": false,
+          "isGenerated": false,
+          "sequence": false,
+          "hasDefaultValue": false
+        },
+        {
           "name": "goals",
           "type": "goals",
           "isRequired": true,
@@ -5001,6 +5019,20 @@
           "isRequired": false,
           "kind": "object",
           "relationName": "goalsTousers",
+          "relationFromFields": [],
+          "relationToFields": [],
+          "isList": true,
+          "isId": false,
+          "isGenerated": false,
+          "sequence": false,
+          "hasDefaultValue": false
+        },
+        {
+          "name": "share_records",
+          "type": "share_records",
+          "isRequired": false,
+          "kind": "object",
+          "relationName": "share_recordsTousers",
           "relationFromFields": [],
           "relationToFields": [],
           "isList": true,
