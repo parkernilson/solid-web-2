@@ -9,14 +9,27 @@ import { createSeedClient } from "@snaplet/seed";
 const dan = {
   email: "danexample@gmail.com",
   id: "b77f5aac-8f78-47a3-8a56-a52fa7363bee",
-  encrypted_password: "$2a$10$zefh5Jv7MWpgb5NVucKGgel/NZPpBObTXz7qv0EswwoQb9ZR5q9Va"
+  encrypted_password:
+    "$2a$10$zefh5Jv7MWpgb5NVucKGgel/NZPpBObTXz7qv0EswwoQb9ZR5q9Va",
 };
 
 const sabrina = {
   email: "sabrinatest@mail.com",
   id: "11bd719b-8370-4c7b-b4d0-d3463c61a72f",
-  encrypted_password: "$2a$10$hD4pRadLBGkQ8F72EVv2L.F6PG/x5GYCGwPluOpkYKXz0MzEy5P4S"
+  encrypted_password:
+    "$2a$10$hD4pRadLBGkQ8F72EVv2L.F6PG/x5GYCGwPluOpkYKXz0MzEy5P4S",
 };
+
+const dateRanges = [1, 2, 3].map((i) => {
+  let startDate = new Date(2024, 1, 1);
+  return [...Array(100).keys()].filter((d) => Math.random() > 0.5).map(
+    (d) => {
+      const newDate = new Date(startDate);
+      newDate.setDate(startDate.getDate() + d);
+      return newDate;
+    },
+  );
+});
 
 const main = async () => {
   const seed = await createSeedClient({ dryRun: true });
@@ -29,8 +42,12 @@ const main = async () => {
     {
       ...dan,
       goals: (x) =>
-        x(8, ({ index }) => ({
-          entries: (x) => x(5),
+        x(dateRanges.length, ({ index: goalNum }) => ({
+          entries: (x) =>
+            x(dateRanges[goalNum].length, ({ index: entryNum }) => ({
+              date: dateRanges[goalNum][entryNum],
+              checked: Math.random() > 0.5 ? true : false,
+            })),
           share_records: [
             {
               viewer: sabrina.id,

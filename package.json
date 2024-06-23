@@ -4,13 +4,18 @@
   "description": "The backend services for Solid App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "supabase start",
+    "stop": "supabase stop",
+    "seed:update": "tsx seed.ts > supabase/seed.sql",
+    "db:reset": "supabase db reset",
+    "db:sync": "npm run seed:update && npm run db:reset"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@snaplet/copycat": "^5.0.0",
     "@snaplet/seed": "^0.97.12",
-    "postgres": "^3.4.4"
+    "postgres": "^3.4.4",
+    "tsx": "^4.10.4"
   }
 }
